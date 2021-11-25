@@ -1,32 +1,27 @@
 <?php require_once '../components/db_connect.php';
-$sql = "SELECT * FROM animals";
-$result = mysqli_query($connect, $sql);
+if ($_GET["id"]) {
+    $id = $_GET["id"];
+$sql = "SELECT * FROM animals where animal_id= {$id}";
+$result = mysqli_query($connect, $sql);}
 $tbody = ''; 
 if (mysqli_num_rows($result)  > 0) {
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $tbody .= "
-       <div class='col'>
-       <div class='card mt-5 border-2 shadow' style='width: 18rem;' style='background-color: #eae9e4;'>
-       <img src='pictures/" . $row['animal_photo'] . "' class='card-img-top' alt='...'>
-       <div class='card-body'>
-         <h4 class='card-title'>Name: " . $row['animal_name'] . "</h4>
-         <p class='card-title'>Size: " . $row['size'] . "</p>
-         <p class='card-title'>Age: " . $row['age'] . "</p>
-         <p class='card-title'>Hobbies: " . $row['hobbies'] . "</p>
-         <p class='card-title'>Breed: " . $row['breed'] . "</p>
-      
-         <a href='showMore.php?id=" . $row['animal_id'] . "' class='btn 'style='background-color: #6e9a44;font-family: 'Dancing Script', cursive;'>Show More Infos</a>
-         <div class='mt-2'>
-         
-         <a href='update.php?id=" . $row['animal_id'] . "'><button type='button' class='btn btn-outline'style='background-color:#02a0da'>Edit</button></a>
-           <a href='delete.php?id=" . $row['animal_id'] . "'><button type='button' class='btn btn-outline'style='background-color:#a83b24'>Delete</button></a>
-</div>
-
-           
-       </div>
-     </div>
-     </div>";
-    };
+       
+     
+     
+     <div class='card' style='background-color: #eae9e4;'>
+  
+  <img src='pictures/" . $row['animal_photo'] . "' class='card-img' alt='...'>
+  <div class='card-img-overlay'>
+  <h1 class='card-title'style='background-color:#f0eeef ;opacity:0.8;'>Name: " . $row['animal_name'] . "</h1>
+  <h3 class='card-title'>Size: " . $row['size'] . "</h3>
+  <h3 class='card-title'>Age: " . $row['age'] . "</h3>
+  <h3 class='card-title'>Hobbies: " . $row['hobbies'] . "</h3>
+  <h3 class='card-title'>Breed: " . $row['breed'] . "</h3>
+  <h3 class='card-title'>Location: " . $row['location'] . "</h3>
+  <h3 class='card-text'>Description: " . $row['description'] . "</h3>
+  </div>"; };
 } else {
     $tbody =   "<tr><td colspan='5'><center>No Data Available </center></td></tr>";
 }
@@ -62,8 +57,8 @@ mysqli_close($connect);
             <button type="button" class="btn btn-lg" style="background-color: #6e9a44;font-family: 'Dancing Script', cursive;">Add New Pet</button>
         </a>
        
-        <a href="senior.php">
-            <button type="button" class="btn btn-lg" style="background-color: #887d8a;font-family: 'Dancing Script', cursive;">Display all senior animals</button>
+        <a href="index.php">
+            <button type="button" class="btn btn-lg" style="background-color: #887d8a;font-family: 'Dancing Script', cursive;">Home</button>
         </a>
         <hr>
         
@@ -72,9 +67,9 @@ mysqli_close($connect);
 
     <!-- start card -->
 
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+   
         <?= $tbody; ?>
-    </div>
+   
     <!-- start card -->
 
 </body>
