@@ -1,4 +1,4 @@
-<?php require_once '../components/db_connect.php';
+<?php require_once 'components/db_connect.php';
 if ($_GET["id"]) {
     $id = $_GET["id"];
 $sql = "SELECT * FROM animals where animal_id= {$id}";
@@ -12,7 +12,7 @@ if (mysqli_num_rows($result)  > 0) {
      
      <div class='card' style='background-color: #eae9e4;'>
   
-  <img src='pictures/" . $row['animal_photo'] . "' class='card-img' alt='...'>
+  <img src='animals/pictures/" . $row['animal_photo'] . "' class='card-img' alt='...'>
   <div class='card-img-overlay'>
   <h1 class='card-title'style='background-color:#f0eeef ;opacity:0.8;'>Name: " . $row['animal_name'] . "</h1>
   <h3 class='card-title'>Size: " . $row['size'] . "</h3>
@@ -35,7 +35,7 @@ mysqli_close($connect);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animals</title>
-    <?php require_once '../components/boot.php' ?>
+    <?php require_once 'components/boot.php' ?>
 </head>
 
 <body style="background-image: url('photo.jpg');background-attachment: fixed; background-size: cover; " class="container">
@@ -53,11 +53,7 @@ mysqli_close($connect);
     <!-- end heading -->
 
     <div class="mt-4">
-        <a href="create.php">
-            <button type="button" class="btn btn-lg" style="background-color: #6e9a44;font-family: 'Dancing Script', cursive;">Add New Pet</button>
-        </a>
-       
-        <a href="index.php">
+        <a href="home.php">
             <button type="button" class="btn btn-lg" style="background-color: #887d8a;font-family: 'Dancing Script', cursive;">Home</button>
         </a>
         <hr><hr>

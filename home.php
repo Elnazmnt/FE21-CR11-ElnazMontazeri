@@ -1,7 +1,34 @@
-
 <?php
 session_start();
 require_once 'components/db_connect.php';
+
+
+$sql = "SELECT * FROM animals";
+$result = mysqli_query($connect, $sql);
+$tbody = ''; 
+if (mysqli_num_rows($result)  > 0) {
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        $tbody .= "
+       <div class='col'>
+       <div class='card mt-5 border-2 shadow' style='width: 18rem;' style='background-color: #eae9e4;'>
+       <img src='animals/pictures/" . $row['animal_photo'] . "' class='card-img-top' alt='...'>
+       <div class='card-body'>
+         <h4 class='card-title'>Name: " . $row['animal_name'] . "</h4>
+         <p class='card-title'>Size: " . $row['size'] . "</p>
+         <p class='card-title'>Age: " . $row['age'] . "</p>
+         <p class='card-title'>Hobbies: " . $row['hobbies'] . "</p>
+         <p class='card-title'>Breed: " . $row['breed'] . "</p>
+      
+         <a href='showMore.php?id=" . $row['animal_id'] . "' class='btn 'style='background-color: #6e9a44;font-family: 'Dancing Script', cursive;'>Show More Infos</a>
+         <div class='mt-2'>
+</div> 
+       </div>
+     </div>
+     </div>";
+    };
+} else {
+    $tbody =   "<tr><td colspan='5'><center>No Data Available </center></td></tr>";
+}
 
 // if adm will redirect to dashboard
 if (isset($_SESSION['adm'])) {
@@ -27,27 +54,31 @@ mysqli_close($connect);
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Welcome - <?php echo $row['first_name']; ?></title>
+<title>Welcome Dear :<?php echo $row['first_name']; ?></title>
 <?php require_once 'components/boot.php'?>
-<style>
-.userImage{
-width: 200px;
-height: 200px;
-}
-.hero {
-   background: rgb(2,0,36);
-   background: linear-gradient(24deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 100%);  
-}
-</style>
+
 </head>
-<body>
+<body style="background-image: url('photo.jpg');background-attachment: fixed; background-size: cover; " class="container">
 <div class="container">
-   <div class="hero">
-       <img class="userImage" src="pictures/<?php echo $row['picture']; ?>" alt="<?php echo $row['first_name']; ?>">
-       <p class="text-white" >Hi <?php echo $row['first_name']; ?></p>
-   </div>
-   <a href="logout.php?logout">Sign Out</a>
+   <div class="hero" style="background-color: #8c7b73;">
+       <img class="userImage rounded img-thumbnail" src="picture/<?php echo $row['picture']; ?>" style="width: 200px;height: 200px;" alt="<?php echo $row['first_name']; ?>">
+       <h6 class="text-white" >Hi Dear <?php echo $row['first_name']; ?></h6>
+       <hr>
+       <a href="logout.php?logout">Sign Out</a> 
    <a href="update.php?id=<?php echo $_SESSION['user'] ?>">Update your profile</a>
-</div>
+   </div>
+   </div>
+   <br>
+   <a href="senior.php">
+            <button type="button" class="btn btn-lg" style="background-color: #887d8a;font-family: 'Dancing Script', cursive;">Display all senior animals</button>
+        </a>
+
+  <!-- start card -->
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+        <?= $tbody; ?>
+    </div>
+    <!-- start card -->
+
 </body>
 </html>

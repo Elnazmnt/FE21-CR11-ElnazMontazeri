@@ -6,7 +6,6 @@ if ($_POST) {
     $id = $_POST['animal_id'];
     $animal_name = $_POST['animal_name'];
     $location = $_POST['location'];
-    $animal_photo = $_POST['animal_photo'];
     $description = $_POST['description'];
     $size = $_POST['size'];
     $age = $_POST['age'];
@@ -18,7 +17,7 @@ if ($_POST) {
         ($_POST["animal_photo"] == "default.jpg") ?: unlink("../pictures/$_POST[animal_photo]");
         $sql = "UPDATE animals SET animal_name = '$animal_name', location = '$location', animal_photo = '$animal_photo->fileName' ,description = '$description', size = '$size',age = '$age',hobbies = '$hobbies',breed = '$breed'  WHERE animal_id = {$id}";
     } else {
-        $sql = "UPDATE animals SET animal_name = '$animal_name', location = '$location', animal_photo = '$animal_photo->fileName' ,description = '$description', size = '$size',age = '$age',hobbies = '$hobbies',breed = '$breed  WHERE animal_id = {$id}";
+        $sql = "UPDATE animals SET animal_name = '$animal_name', location = '$location' ,description = '$description', size = '$size',age = '$age',hobbies = '$hobbies',breed = '$breed'  WHERE animal_id = {$id}";
     }
 
 
@@ -29,8 +28,9 @@ if ($_POST) {
     } else {
        
         $class = "danger";
-        $message = "Error while updating record : <br>" . mysqli_connect_error();
+        $message = "Error while updating record : <br>" . mysqli_error($connect);
         $uploadError = ($animal_photo->error !=0)? $animal_photo->ErrorMessage :'';
+       
     }
     mysqli_close($connect);    
 } 

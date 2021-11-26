@@ -102,7 +102,7 @@ mysqli_close($connect);
             <input type="email" autocomplete="off" name="email" class="form-control" placeholder="Your Email" value="<?php echo $email; ?>" maxlength="40" />
             <span class="text-danger"><?php echo $emailError; ?></span>
 
-            <input type="password" name="password" class="form-control mt-3" placeholder="Your Password" value="<?php echo $password; ?>" maxlength="15" />
+            <input type="password" name="password" class="form-control mt-3" placeholder="Your Password"  maxlength="15" />
             <span class="text-danger"><?php echo $passwordError; ?></span>
             <hr />
             <button class="btn btn-block " style="background-color: #d02a2a;" type="submit" name="btn-login">Sign In</button>
