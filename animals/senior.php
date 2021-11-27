@@ -62,8 +62,10 @@ mysqli_close($connect);
             <button type="button" class="btn btn-lg" style="background-color: #6e9a44;font-family: 'Dancing Script', cursive;">Display all animals</button>
         </a>
        
-        <a href="senior.php">
-            <button type="button" class="btn btn-lg" style="background-color: #887d8a;font-family: 'Dancing Script', cursive;">Display all senior animals</button>
+        
+
+        <a href="../dashBoard.php">
+            <button type="button" class="btn btn-lg" style="background-color: #ffb9cb;font-family: 'Dancing Script', cursive;">DashBoard</button>
         </a>
         <hr>
         

@@ -62,10 +62,11 @@ mysqli_close($connect);
 <div class="container">
    <div class="hero" style="background-color: #8c7b73;">
        <img class="userImage rounded img-thumbnail" src="picture/<?php echo $row['picture']; ?>" style="width: 200px;height: 200px;" alt="<?php echo $row['first_name']; ?>">
-       <h6 class="text-white" >Hi Dear <?php echo $row['first_name']; ?></h6>
+       <h3 class="text-white" >Hi Dear <?php echo $row['first_name']; ?></h3>
        <hr>
-       <a href="logout.php?logout">Sign Out</a> 
-   <a href="update.php?id=<?php echo $_SESSION['user'] ?>">Update your profile</a>
+       <a href="logout.php?logout">
+       <button type="button" class="btn btn-outline-danger">Sign Out</button> </a> 
+   <a href="update.php?id=<?php echo $_SESSION['user'] ?>"><button type="button" class="btn btn-outline-secondary">Update your profile</button> </a>
    </div>
    </div>
    <br>

@@ -68,17 +68,22 @@ height: auto;
 }
    </style>
 </head>
-<body>
+<body style="background-image: url('photo.jpg');background-attachment: fixed; background-size: cover; " class="container">
 <div class="container">
    <div class="row">
-       <div class="col-2">
-       <img class="userImage" src="picture/admavatar.png" alt="Adm avatar">
-       <p class="">Administrator</p>
-       <a href="logout.php?logout">Sign Out</a>
+       <div class="col-2 bg-light mt-2">
+       <img class="userImage" src="picture/eli.jpg" alt="Adm avatar">
+       <p class="bg-light">Administrator</p>
+
+       <button type="button" class="btn" style="background-color: #d73d6c;"><a href="logout.php?logout"><p style="color:cornsilk">Sign Out</p></a></button>
+       <button type="button" class="btn btn-lg mt-3" style="background-color: #d39b75;">
+       <a href="animals/index.php"><p style="color:cornsilk">Edit Animals</p></a>
+    </button>
+        
        </div>
-       <div class="col-8 mt-2">
+       <div class="col-8 mt-2 " style="background-color: #f7e8e3;">
        <p class='h2'>Users</p>
-       <table class='table table-striped'>
+       <table class='table table-striped bg-light'>
            <thead class='table-success'>
                <tr>
                    <th>Picture</th>
